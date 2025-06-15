@@ -1,26 +1,149 @@
 {
   "name": "nexus",
   "version": "1.0.0",
-  "description": "Intelligent Video Conferencing Platform",
+  "description": "Plataforma de teleconferencias inteligente con IA avanzada",
+  "private": true,
+  "author": "Francisco Monfasani <fmonfasani@gmail.com>",
+  "license": "PRIVATE",
+  "keywords": [
+    "videoconference",
+    "webrtc",
+    "ai",
+    "transcription",
+    "collaboration",
+    "real-time"
+  ],
   "scripts": {
-    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
-    "dev": "docker-compose up -d && concurrently \"npm run dev:frontend\" \"npm run dev:backend\" \"npm run dev:ai\"",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\" \"npm run dev:ai\"",
     "dev:frontend": "cd frontend && npm run dev",
     "dev:backend": "cd backend && npm run dev",
     "dev:ai": "cd ai-services && python -m uvicorn main:app --reload --port 8001",
+    "dev:setup": "npm run install:all && npm run db:setup && npm run env:setup",
+    
     "build": "npm run build:frontend && npm run build:backend",
     "build:frontend": "cd frontend && npm run build",
     "build:backend": "cd backend && npm run build",
-    "test": "npm run test:unit && npm run test:integration",
-    "test:unit": "cd frontend && npm run test && cd ../backend && npm run test",
-    "test:integration": "cd tests/integration && npm test",
-    "lint": "cd frontend && npm run lint && cd ../backend && npm run lint",
-    "format": "cd frontend && npm run format && cd ../backend && npm run format",
-    "db:migrate": "cd backend && npm run db:migrate",
-    "db:seed": "cd backend && npm run db:seed",
-    "setup": "npm run install:all && docker-compose up -d postgres redis"
+    "build:docker": "docker-compose build",
+    
+    "start": "docker-compose up -d",
+    "start:prod": "docker-compose -f docker-compose.prod.yml up -d",
+    "stop": "docker-compose down",
+    
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install && cd ../ai-services && pip install -r requirements.txt",
+    "install:frontend": "cd frontend && npm install",
+    "install:backend": "cd backend && npm install",
+    "install:ai": "cd ai-services && pip install -r requirements.txt",
+    
+    "db:setup": "npm run db:migrate && npm run db:seed",
+    "db:migrate": "cd backend && npx prisma migrate deploy",
+    "db:seed": "cd backend && npx prisma db seed",
+    "db:reset": "cd backend && npx prisma migrate reset --force",
+    "db:studio": "cd backend && npx prisma studio",
+    "db:generate": "cd backend && npx prisma generate",
+    
+    "test": "npm run test:backend && npm run test:frontend && npm run test:ai",
+    "test:frontend": "cd frontend && npm run test",
+    "test:backend": "cd backend && npm run test",
+    "test:ai": "cd ai-services && python -m pytest",
+    "test:e2e": "cd frontend && npm run test:e2e",
+    "test:load": "artillery run infrastructure/load-test.yml",
+    "test:coverage": "npm run test:backend:coverage && npm run test:frontend:coverage",
+    "test:backend:coverage": "cd backend && npm run test:coverage",
+    "test:frontend:coverage": "cd frontend && npm run test:coverage",
+    
+    "lint": "npm run lint:frontend && npm run lint:backend && npm run lint:ai",
+    "lint:frontend": "cd frontend && npm run lint",
+    "lint:backend": "cd backend && npm run lint",
+    "lint:ai": "cd ai-services && black . && flake8 .",
+    "lint:fix": "npm run lint:frontend:fix && npm run lint:backend:fix",
+    "lint:frontend:fix": "cd frontend && npm run lint:fix",
+    "lint:backend:fix": "cd backend && npm run lint:fix",
+    
+    "format": "npm run format:frontend && npm run format:backend && npm run format:ai",
+    "format:frontend": "cd frontend && npm run format",
+    "format:backend": "cd backend && npm run format",
+    "format:ai": "cd ai-services && black . && isort .",
+    
+    "type-check": "npm run type-check:frontend && npm run type-check:backend",
+    "type-check:frontend": "cd frontend && npm run type-check",
+    "type-check:backend": "cd backend && npm run type-check",
+    
+    "security:audit": "npm audit && cd frontend && npm audit && cd ../backend && npm audit",
+    "security:fix": "npm audit fix && cd frontend && npm audit fix && cd ../backend && npm audit fix",
+    "security:scan": "docker run --rm -v $(pwd):/src returntocorp/semgrep --config=auto /src",
+    
+    "deploy:staging": "npm run build && docker-compose -f docker-compose.staging.yml up -d",
+    "deploy:prod": "npm run build && npm run test && docker-compose -f docker-compose.prod.yml up -d",
+    
+    "logs": "docker-compose logs -f",
+    "logs:backend": "docker-compose logs -f backend",
+    "logs:frontend": "docker-compose logs -f frontend",
+    "logs:ai": "docker-compose logs -f ai-services",
+    "logs:db": "docker-compose logs -f postgres",
+    
+    "monitor:start": "docker-compose -f infrastructure/monitoring.yml up -d",
+    "monitor:stop": "docker-compose -f infrastructure/monitoring.yml down",
+    
+    "backup:db": "docker exec nexus_postgres pg_dump -U postgres nexus > backup_$(date +%Y%m%d_%H%M%S).sql",
+    "restore:db": "docker exec -i nexus_postgres psql -U postgres nexus < $1",
+    
+    "env:setup": "cp .env.example .env && echo 'Configurar variables en .env'",
+    "env:validate": "node scripts/validate-env.js",
+    
+    "clean": "npm run clean:deps && npm run clean:build && docker system prune -f",
+    "clean:deps": "rm -rf node_modules frontend/node_modules backend/node_modules ai-services/__pycache__",
+    "clean:build": "rm -rf frontend/dist backend/dist",
+    
+    "health": "curl -f http://localhost:8000/health && echo ' Backend OK' && curl -f http://localhost:3000 && echo ' Frontend OK'",
+    "status": "docker-compose ps",
+    
+    "setup:macos": "brew install node python postgresql redis && npm run install:all",
+    "setup:ubuntu": "sudo apt update && sudo apt install nodejs npm python3 python3-pip postgresql redis-server && npm run install:all",
+    "setup:windows": "echo 'Instalar Node.js, Python, PostgreSQL y Redis manualmente' && npm run install:all"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
-  }
+    "concurrently": "^8.2.2",
+    "artillery": "^2.0.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3",
+    "prettier": "^3.0.0",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=9.0.0",
+    "python": ">=3.11.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fmonfasani/nexus.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fmonfasani/nexus/issues"
+  },
+  "homepage": "https://github.com/fmonfasani/nexus#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run type-check && npm run test"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{py}": [
+      "black",
+      "flake8"
+    ],
+    "*.{md,json,yml,yaml}": [
+      "prettier --write"
+    ]
+  },
+  "workspaces": [
+    "frontend",
+    "backend"
+  ]
 }

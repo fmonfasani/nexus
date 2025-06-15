@@ -1,0 +1,455 @@
+node_modules/
+dist/
+.env
+.env.local
+logs/
+*.log
+coverage/
+.DS_Store
+data/uploads/*
+!data/uploads/.gitkeep
+# ===================================
+# NEXUS - .gitignore
+# ===================================
+
+# ===================================
+# VARIABLES DE ENTORNO Y SECRETOS
+# ===================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.staging
+.env.production
+
+# Archivos de configuración con secretos
+config/production.json
+config/staging.json
+secrets.json
+*-secrets.yaml
+*-secrets.yml
+
+# Certificados y claves
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+ssl/
+certs/
+keys/
+
+# ===================================
+# NODE.JS & NPM
+# ===================================
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+.nyc_output
+
+# Grunt intermediate storage
+.grunt
+
+# Bower dependency directory
+bower_components
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional stylelint cache
+.stylelintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# ===================================
+# FRONTEND (React/Vite)
+# ===================================
+# Build outputs
+frontend/dist/
+frontend/build/
+frontend/.vite/
+frontend/.next/
+frontend/out/
+
+# Cache
+frontend/.cache/
+frontend/.parcel-cache/
+
+# ===================================
+# BACKEND (Node.js/TypeScript)
+# ===================================
+# Build outputs
+backend/dist/
+backend/build/
+backend/lib/
+
+# Logs
+backend/logs/
+*.log
+
+# ===================================
+# PYTHON & AI SERVICES
+# ===================================
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# PEP 582
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# ===================================
+# MODELOS DE IA
+# ===================================
+# Modelos pre-entrenados (muy grandes)
+ai-services/models/
+*.model
+*.pkl
+*.joblib
+*.h5
+*.pb
+*.onnx
+*.tflite
+
+# Datasets
+datasets/
+data/
+*.csv
+*.json
+*.parquet
+*.hdf5
+
+# Checkpoints de entrenamiento
+checkpoints/
+runs/
+logs/
+tensorboard/
+
+# ===================================
+# DOCKER & KUBERNETES
+# ===================================
+# No ignorar Dockerfiles pero sí builds
+.dockerignore
+
+# Kubernetes secrets
+k8s-secrets.yaml
+kustomization.yaml
+
+# ===================================
+# BASE DE DATOS
+# ===================================
+# Backups de base de datos
+*.sql
+*.dump
+*.backup
+backups/
+
+# SQLite databases
+*.db
+*.sqlite
+*.sqlite3
+
+# ===================================
+# ARCHIVOS TEMPORALES
+# ===================================
+# Logs de aplicación
+logs/
+*.log
+
+# Uploads temporales
+uploads/
+temp/
+tmp/
+.tmp/
+
+# Cache
+.cache/
+cache/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ===================================
+# EDITORES E IDEs
+# ===================================
+# VSCode
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# IntelliJ
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# ===================================
+# TESTING
+# ===================================
+# Test results
+test-results/
+coverage/
+.coverage
+junit.xml
+
+# Screenshots de tests E2E
+screenshots/
+videos/
+
+# ===================================
+# MONITORING & LOGGING
+# ===================================
+# Prometheus data
+prometheus_data/
+
+# Grafana data
+grafana_data/
+
+# ElasticSearch data
+elasticsearch_data/
+
+# Logs de aplicación
+app.log
+error.log
+access.log
+combined.log
+
+# ===================================
+# DEPLOYMENT & CI/CD
+# ===================================
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Ansible
+*.retry
+
+# ===================================
+# DOCUMENTACIÓN
+# ===================================
+# Documentación generada
+docs/build/
+docs/dist/
+
+# ===================================
+# ARCHIVOS ESPECÍFICOS DEL PROYECTO
+# ===================================
+# Grabaciones de reuniones
+recordings/
+*.webm
+*.mp4
+*.wav
+*.mp3
+
+# Transcripciones
+transcriptions/
+*.txt
+
+# Exports de datos
+exports/
+*.xlsx
+*.pdf
+
+# ===================================
+# DESARROLLO LOCAL
+# ===================================
+# Scripts de desarrollo personal
+dev-scripts/
+local-setup.sh
+personal-notes.md
+
+# Configuraciones locales de desarrollador
+.vscode/settings.json
+.idea/workspace.xml
+
+# ===================================
+# MISC
+# ===================================
+# Archive files
+*.zip
+*.tar.gz
+*.rar
+
+# Large files
+*.iso
+*.dmg
+
+# Temporary files
+*~
+*.tmp
