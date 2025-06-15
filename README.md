@@ -1,8 +1,6 @@
-# nexus
+# 🚀 Nexus - Intelligent Video Conferencing Platform
 
-# 🚀 Nexus - Plataforma de Teleconferencias Inteligente
-
-> Plataforma de videoconferencias empresarial con IA avanzada para transcripción, resúmenes automáticos y analytics de reuniones.
+> Enterprise video conferencing platform with advanced AI for transcription, automatic summaries, and meeting analytics.
 
 ![Status](https://img.shields.io/badge/Status-In%20Development-orange)
 ![License](https://img.shields.io/badge/License-Private-red)
@@ -10,17 +8,17 @@
 ![Python](https://img.shields.io/badge/Python-3.11%2B-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5%2B-blue)
 
-## ✨ Características Principales
+## ✨ Key Features
 
-- 🎥 **Videoconferencias HD** - WebRTC nativo con soporte para 50+ participantes
-- 🤖 **Transcripción en Tiempo Real** - Whisper AI con identificación de oradores
-- 📝 **Resúmenes Inteligentes** - AI que extrae puntos clave y action items
-- 📊 **Analytics Avanzado** - Métricas de participación y productividad
-- 💬 **Chat Inteligente** - Con análisis de sentimiento en tiempo real
-- 🔐 **Seguridad Enterprise** - E2E encryption, SSO, compliance GDPR
-- 📱 **Multi-Platform** - Web, Mobile (próximamente)
+- 🎥 **HD Video Conferencing** - Native WebRTC with support for 50+ participants
+- 🤖 **Real-Time Transcription** - Whisper AI with speaker identification
+- 📝 **Intelligent Summaries** - AI that extracts key points and action items
+- 📊 **Advanced Analytics** - Engagement and productivity metrics
+- 💬 **Smart Chat** - With real-time sentiment analysis
+- 🔐 **Enterprise Security** - E2E encryption, SSO, GDPR compliance
+- 📱 **Multi-Platform** - Web, Mobile (coming soon)
 
-## 🏗️ Arquitectura
+## 🏗️ Architecture
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
@@ -38,7 +36,7 @@
 
 ## 🚀 Quick Start
 
-### Prerrequisitos
+### Prerequisites
 
 - **Node.js 20+**
 - **Python 3.11+**
@@ -46,67 +44,67 @@
 - **PostgreSQL 15+**
 - **Redis 7+**
 
-### Instalación Rápida
+### Quick Installation
 
 ```bash
-# 1. Clonar el repositorio
+# 1. Clone the repository
 git clone https://github.com/fmonfasani/nexus.git
 cd nexus
 
-# 2. Setup inicial con Docker
+# 2. Initial setup with Docker
 cp .env.example .env
 docker-compose up -d
 
-# 3. Instalar dependencias
+# 3. Install dependencies
 npm run install:all
 
-# 4. Ejecutar migraciones
+# 4. Run migrations
 npm run db:migrate
 
-# 5. Iniciar desarrollo
+# 5. Start development
 npm run dev
 ```
 
-### Acceso a la Aplicación
+### Application Access
 
 - **Frontend**: http://localhost:3000
 - **Backend API**: http://localhost:8000
 - **AI Services**: http://localhost:8001
-- **Docs API**: http://localhost:8000/docs
+- **API Docs**: http://localhost:8000/docs
 - **Admin Panel**: http://localhost:3000/admin
 
-## 📦 Scripts Disponibles
+## 📦 Available Scripts
 
 ```bash
-# Desarrollo
-npm run dev              # Inicia todos los servicios
-npm run dev:frontend     # Solo frontend
-npm run dev:backend      # Solo backend
-npm run dev:ai           # Solo servicios IA
+# Development
+npm run dev              # Start all services
+npm run dev:frontend     # Frontend only
+npm run dev:backend      # Backend only
+npm run dev:ai           # AI services only
 
 # Build & Deploy
-npm run build            # Build completo
-npm run build:frontend   # Build frontend
-npm run build:backend    # Build backend
-npm run deploy:staging   # Deploy a staging
-npm run deploy:prod      # Deploy a producción
+npm run build            # Complete build
+npm run build:frontend   # Frontend build
+npm run build:backend    # Backend build
+npm run deploy:staging   # Deploy to staging
+npm run deploy:prod      # Deploy to production
 
 # Database
-npm run db:migrate       # Ejecutar migraciones
-npm run db:seed          # Llenar con datos de ejemplo
-npm run db:reset         # Reset completo
+npm run db:migrate       # Run migrations
+npm run db:seed          # Populate with sample data
+npm run db:reset         # Complete reset
 
 # Testing
-npm run test             # Test completo
+npm run test             # Complete test suite
 npm run test:unit        # Unit tests
 npm run test:e2e         # End-to-end tests
 npm run test:load        # Load testing
 
 # Maintenance
 npm run lint             # Linting
-npm run format           # Format código
-npm run type-check       # Verificación TypeScript
-npm run security:audit   # Auditoría de seguridad
+npm run format           # Format code
+npm run type-check       # TypeScript verification
+npm run security:audit   # Security audit
 ```
 
 ## 🧪 Testing
@@ -126,18 +124,18 @@ npm run test:integration
 ### E2E Tests
 ```bash
 npm run test:e2e
-# Full user workflows con Playwright
+# Full user workflows with Playwright
 ```
 
 ### Load Testing
 ```bash
 npm run test:load
-# 1000 usuarios concurrentes, 50 meetings simultáneas
+# 1000 concurrent users, 50 simultaneous meetings
 ```
 
-## 🔧 Configuración
+## 🔧 Configuration
 
-### Variables de Entorno
+### Environment Variables
 
 ```bash
 # Database
@@ -163,7 +161,7 @@ SENTRY_DSN=your-sentry-dsn
 PROMETHEUS_PORT=9090
 ```
 
-### Configuración de Desarrollo
+### Development Configuration
 
 ```typescript
 // config/development.ts
@@ -187,30 +185,30 @@ export const config = {
 };
 ```
 
-## 🔐 Seguridad
+## 🔐 Security
 
-### Autenticación
-- **JWT** con refresh tokens
+### Authentication
+- **JWT** with refresh tokens
 - **OAuth 2.0** (Google, Microsoft, GitHub)
-- **SSO empresarial** (SAML, OIDC)
-- **MFA** obligatorio para admin
+- **Enterprise SSO** (SAML, OIDC)
+- **MFA** mandatory for admin
 
-### Autorización
-- **RBAC** granular (Admin, Host, Participant, Guest)
-- **Permisos por reunión**
-- **Audit logs** completos
+### Authorization
+- **Granular RBAC** (Admin, Host, Participant, Guest)
+- **Per-meeting permissions**
+- **Complete audit logs**
 
-### Encriptación
-- **E2E encryption** para video/audio (DTLS-SRTP)
-- **TLS 1.3** para todas las comunicaciones
-- **AES-256** para datos en reposo
+### Encryption
+- **E2E encryption** for video/audio (DTLS-SRTP)
+- **TLS 1.3** for all communications
+- **AES-256** for data at rest
 
 ### Compliance
 - **GDPR** compliant (data retention, deletion)
 - **SOC 2 Type II** ready
-- **HIPAA** compatible (configuración específica)
+- **HIPAA** compatible (specific configuration)
 
-## 📊 Monitoreo
+## 📊 Monitoring
 
 ### Health Checks
 ```bash
@@ -223,104 +221,104 @@ curl http://localhost:8000/metrics
 - **Prometheus**: http://localhost:9090
 - **Jaeger**: http://localhost:16686
 
-### Alertas
+### Alerts
 - **Response time** > 500ms
 - **Error rate** > 1%
 - **CPU usage** > 80%
 - **Memory usage** > 85%
 
-## 🛠️ Desarrollo
+## 🛠️ Development
 
-### Estructura de Commits
+### Commit Structure
 ```
-feat: nueva funcionalidad
-fix: corrección de bug
-docs: documentación
-style: formato, linting
-refactor: refactoring de código
+feat: new feature
+fix: bug fix
+docs: documentation
+style: formatting, linting
+refactor: code refactoring
 test: testing
-chore: mantenimiento
+chore: maintenance
 ```
 
 ### Branch Strategy
 ```
-main           # Producción
-develop        # Desarrollo
-feature/*      # Nuevas features
-hotfix/*       # Fixes urgentes
-release/*      # Preparación releases
+main           # Production
+develop        # Development
+feature/*      # New features
+hotfix/*       # Urgent fixes
+release/*      # Release preparation
 ```
 
 ### Code Review
-- **Pull Requests** obligatorios
-- **2 reviewers** mínimo
-- **Tests passing** requerido
-- **Security scan** automático
+- **Pull Requests** mandatory
+- **2 reviewers** minimum
+- **Passing tests** required
+- **Automated security scan**
 
 ## 📈 Roadmap
 
-### ✅ Fase 1 - MVP (Completado)
-- [x] Videoconferencia básica WebRTC
-- [x] Chat en tiempo real
-- [x] Autenticación JWT
-- [x] Transcripción básica
+### ✅ Phase 1 - MVP (Completed)
+- [x] Basic WebRTC video conferencing
+- [x] Real-time chat
+- [x] JWT authentication
+- [x] Basic transcription
 
-### 🚧 Fase 2 - AI Core (En Desarrollo)
-- [ ] Sistema MCP completo
-- [ ] Resúmenes inteligentes
-- [ ] Analytics avanzado
+### 🚧 Phase 2 - AI Core (In Development)
+- [ ] Complete MCP system
+- [ ] Intelligent summaries
+- [ ] Advanced analytics
 - [ ] Speaker identification
 
-### 📋 Fase 3 - Enterprise
+### 📋 Phase 3 - Enterprise
 - [ ] SSO integrations
-- [ ] Grabaciones HD
-- [ ] API pública
+- [ ] HD recordings
+- [ ] Public API
 - [ ] Mobile apps
 
-### 🔮 Fase 4 - AI Advanced
-- [ ] Traducción en tiempo real
-- [ ] Asistente virtual
-- [ ] Predicción de outcomes
-- [ ] Integración calendarios
+### 🔮 Phase 4 - AI Advanced
+- [ ] Real-time translation
+- [ ] Virtual assistant
+- [ ] Outcome prediction
+- [ ] Calendar integrations
 
-## 🤝 Contribuciones
+## 🤝 Contributing
 
-### Setup para Contribuidores
+### Setup for Contributors
 ```bash
-# Fork del repositorio
-git clone https://github.com/TU-USERNAME/nexus.git
+# Fork the repository
+git clone https://github.com/YOUR-USERNAME/nexus.git
 
-# Setup desarrollo
+# Development setup
 npm run dev:setup
 
-# Crear branch para feature
-git checkout -b feature/nueva-funcionalidad
+# Create feature branch
+git checkout -b feature/new-functionality
 
-# Commit y push
-git commit -m "feat: descripción de la funcionalidad"
-git push origin feature/nueva-funcionalidad
+# Commit and push
+git commit -m "feat: functionality description"
+git push origin feature/new-functionality
 ```
 
 ### Guidelines
-- **TypeScript** obligatorio
-- **Tests** para nuevas features
-- **Documentación** actualizada
-- **Performance** considerado
-- **Security** evaluado
+- **TypeScript** mandatory
+- **Tests** for new features
+- **Updated documentation**
+- **Performance** considered
+- **Security** evaluated
 
-## 📞 Soporte
+## 📞 Support
 
 - **Issues**: [GitHub Issues](https://github.com/fmonfasani/nexus/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/fmonfasani/nexus/discussions)
 - **Email**: support@nexus.dev
 - **Slack**: #nexus-dev
 
-## 📄 Licencia
+## 📄 License
 
-Este proyecto es **privado** y propiedad de Francisco Monfasani. Todos los derechos reservados.
+This project is **private** and owned by Francisco Monfasani. All rights reserved.
 
 ---
 
-**Desarrollado con ❤️ por el equipo Nexus**
+**Developed with ❤️ by the Nexus team**
 
-> "Revolucionando la forma en que las personas se conectan y colaboran"
+> "Revolutionizing the way people connect and collaborate"
