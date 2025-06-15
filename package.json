@@ -1,0 +1,26 @@
+{
+  "name": "nexus",
+  "version": "1.0.0",
+  "description": "Intelligent Video Conferencing Platform",
+  "scripts": {
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "dev": "docker-compose up -d && concurrently \"npm run dev:frontend\" \"npm run dev:backend\" \"npm run dev:ai\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:ai": "cd ai-services && python -m uvicorn main:app --reload --port 8001",
+    "build": "npm run build:frontend && npm run build:backend",
+    "build:frontend": "cd frontend && npm run build",
+    "build:backend": "cd backend && npm run build",
+    "test": "npm run test:unit && npm run test:integration",
+    "test:unit": "cd frontend && npm run test && cd ../backend && npm run test",
+    "test:integration": "cd tests/integration && npm test",
+    "lint": "cd frontend && npm run lint && cd ../backend && npm run lint",
+    "format": "cd frontend && npm run format && cd ../backend && npm run format",
+    "db:migrate": "cd backend && npm run db:migrate",
+    "db:seed": "cd backend && npm run db:seed",
+    "setup": "npm run install:all && docker-compose up -d postgres redis"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
